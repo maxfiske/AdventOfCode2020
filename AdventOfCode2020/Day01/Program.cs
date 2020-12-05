@@ -10,25 +10,35 @@ namespace AdventOfCode2020.Day01
         //Find two inputs that sum to 2020 and multiply them together
 
         private const int SumTo = 2020;
+
         static void Main(string[] args)
         {
             var numbers = GetInput();
 
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                for (int j = 0; j < numbers.Count; j++)
-                {
-                    if (numbers[j] + numbers[i] == SumTo)
-                    {
-                        Console.WriteLine($"Found match: {numbers[i]} + {numbers[j]} = {numbers[i] + numbers[j]}, {numbers[i]} * {numbers[j]} ={numbers[i] * numbers[j]}");
-                        return;
-                    }
-                }
-
-            }
-            
+            var partOneResult = PartOne(numbers);
+            Console.WriteLine($"Part One - Found match: {partOneResult}");
+           
+           var partTwoResult =  PartTwo(numbers);
+            Console.WriteLine($"Part Two - Found match: {partTwoResult}");
         }
 
+
+        private static int PartOne(List<int> numbers)
+        {
+            return (from x in numbers
+                    let y = SumTo - x
+                    where numbers.Contains(y)
+                    select x * y).First();
+        }
+
+        private static int PartTwo(List<int> numbers)
+        {
+            return (from x in numbers
+                    from y in numbers
+                    let z = SumTo - x - y
+                    where numbers.Contains(z)
+                    select x * y * z).First();
+        }
         private static List<int> GetInput()
         {
             var input = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day01/input.txt"));
