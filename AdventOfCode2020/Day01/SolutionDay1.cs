@@ -5,23 +5,22 @@ using System.Linq;
 
 namespace AdventOfCode2020.Day01
 {
-    class Program
+    class SolutionDay1
     {
         //Find two inputs that sum to 2020 and multiply them together
 
         private const int SumTo = 2020;
 
-        static void Main(string[] args)
+        public void Initialize()
         {
             var numbers = GetInput();
 
             var partOneResult = PartOne(numbers);
             Console.WriteLine($"Part One - Found match: {partOneResult}");
-           
-           var partTwoResult =  PartTwo(numbers);
+
+            var partTwoResult = PartTwo(numbers);
             Console.WriteLine($"Part Two - Found match: {partTwoResult}");
         }
-
 
         private static int PartOne(List<int> numbers)
         {
