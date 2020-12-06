@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2020.Day01;
 using AdventOfCode2020.Day02;
+using AdventOfCode2020.Day03;
 using System;
 
 namespace AdventOfCode2020
@@ -30,7 +31,11 @@ namespace AdventOfCode2020
                 case 2:
                     var solution2 = new SolutionDay2();
                     solution2.Initialize();
-                    break;                 
+                    break;
+                case 3:
+                    var solution3 = new SolutionDay3();
+                    solution3.Initialize();
+                    break;
             }
         }
         enum Days

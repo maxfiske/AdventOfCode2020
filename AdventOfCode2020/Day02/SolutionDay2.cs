@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AdventOfCode2020.Interface;
+using System;
 using System.IO;
 using System.Linq;
 
 namespace AdventOfCode2020.Day02
 {
-    //The password policy indicates the lowest and highest number of times 
+    //Part 1: The password policy indicates the lowest and highest number of times 
     // a given letter must appear for the password to be valid. For example,
     //1-3 a means that the password must contain a at least 1 time and at most 3 times.
     //How many passwords are valid according to their policies?
-    class SolutionDay2
+
+    class SolutionDay2 : ISolverSetup
     {
+        private static readonly char[] delimiterChars = { ':', ' ', '-' };
         public void Initialize()
         {
             var input = GetInput();
@@ -41,20 +43,21 @@ namespace AdventOfCode2020.Day02
 
         public bool IsValidPolicyPartOne(string line)
         {
-            char[] delimiterChars = { ':', ' ', '-' };
-            var validPasswords = new List<string>();
-            var characters = line.Split(delimiterChars);
-
-            var firstNumber = int.Parse(characters.First());
-            var secondNumber = int.Parse(characters.Skip(1).First());
-            var letter = characters.Skip(2).First();
-            var lettersequence = characters.Skip(4).First();
-
+            ParseInputPartOne(line, out int firstNumber, out int secondNumber, out string letter, out string lettersequence);
             var letterCount = lettersequence.Count(l => l == char.Parse(letter));
 
             return letterCount >= firstNumber && letterCount <= secondNumber;
-
         }
+
+        private void ParseInputPartOne(string line, out int firstNumber, out int secondNumber, out string letter, out string lettersequence)
+        {
+            var characters = line.Split(delimiterChars);
+            firstNumber = int.Parse(characters.First());
+            secondNumber = int.Parse(characters.Skip(1).First());
+            letter = characters.Skip(2).First();
+            lettersequence = characters.Skip(4).First();
+        }
+
         private int PartTwo(string[] input)
         {
             return CheckPolicyPartTwo(input);
@@ -65,27 +68,29 @@ namespace AdventOfCode2020.Day02
             int validpasswordCount = 0;
             foreach (var line in input)
             {
-               var isValid =  IsValidPolicyPartTwo(line);
-                if(isValid)
-                validpasswordCount++;
+                var isValid = IsValidPolicyPartTwo(line);
+                if (isValid)
+                    validpasswordCount++;
             }
             return validpasswordCount;
         }
 
         public bool IsValidPolicyPartTwo(string line)
         {
-            char[] delimiterChars = { ':', ' ', '-' };
-           
-            var characters = line.Split(delimiterChars);
-
-            var min = int.Parse(characters.First());
-            var max = int.Parse(characters.Skip(1).First());
-            var requiredLetter = characters.Skip(2).First();
-            var lettersequence = characters.Skip(4).First().ToArray();
+            ParseInputPartTwo(line, out int min, out int max, out string requiredLetter, out char[] lettersequence);
 
             var matchesMin = lettersequence[min - 1] == requiredLetter[0];
-            var matchesMax = lettersequence[max - 1] == requiredLetter[0]; 
+            var matchesMax = lettersequence[max - 1] == requiredLetter[0];
             return matchesMin ^ matchesMax;
+        }
+
+        private static void ParseInputPartTwo(string line, out int min, out int max, out string requiredLetter, out char[] lettersequence)
+        {
+            var characters = line.Split(delimiterChars);
+            min = int.Parse(characters.First());
+            max = int.Parse(characters.Skip(1).First());
+            requiredLetter = characters.Skip(2).First();
+            lettersequence = characters.Skip(4).First().ToArray();
         }
 
         private string[] GetInput()
