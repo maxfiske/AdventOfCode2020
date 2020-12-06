@@ -14,35 +14,78 @@ namespace AdventOfCode2020.Day02
         public void Initialize()
         {
             var input = GetInput();
-            var numberOfValidPolicies = CheckPolicy(input);
-            
-            Console.WriteLine("Number of valid policies: " + numberOfValidPolicies.Count());
+
+            var numberOfValidPoliciesRoundOne = PartOne(input);
+            Console.WriteLine("Part one - Number of valid policies: " + numberOfValidPoliciesRoundOne);
+
+            var numberOfValidPoliciesRoundTwo = PartTwo(input);
+            Console.WriteLine("Part two - Number of valid policies: " + numberOfValidPoliciesRoundTwo);
 
         }
+        private int PartOne(string[] input)
+        {
+            return CheckPolicyPartOne(input);
+        }
+        private int CheckPolicyPartOne(string[] input)
+        {
+            int validPasswordCount = 0;
 
-        private List<string> CheckPolicy(string[] input)
+            foreach (var line in input)
+            {
+                var isValid = IsValidPolicyPartOne(line);
+                if (isValid)
+                    validPasswordCount++;
+            }
+            return validPasswordCount;
+        }
+
+        public bool IsValidPolicyPartOne(string line)
         {
             char[] delimiterChars = { ':', ' ', '-' };
             var validPasswords = new List<string>();
+            var characters = line.Split(delimiterChars);
 
-            foreach (var item in input)
+            var firstNumber = int.Parse(characters.First());
+            var secondNumber = int.Parse(characters.Skip(1).First());
+            var letter = characters.Skip(2).First();
+            var lettersequence = characters.Skip(4).First();
+
+            var letterCount = lettersequence.Count(l => l == char.Parse(letter));
+
+            return letterCount >= firstNumber && letterCount <= secondNumber;
+
+        }
+        private int PartTwo(string[] input)
+        {
+            return CheckPolicyPartTwo(input);
+        }
+
+        private int CheckPolicyPartTwo(string[] input)
+        {
+            int validpasswordCount = 0;
+            foreach (var line in input)
             {
-                var characters = item.Split(delimiterChars);
-
-                var firstNumber = int.Parse(characters.First());
-                var secondNumber = int.Parse(characters.Skip(1).First());
-                var letter = characters.Skip(2).First();
-                var lettersequence = characters.Skip(4).First();
-
-                var letterCount = lettersequence.Count(l => l == char.Parse(letter));
-
-                if(letterCount >= firstNumber && letterCount <= secondNumber)
-                {
-                    validPasswords.Add(item);
-                }
+               var isValid =  IsValidPolicyPartTwo(line);
+                if(isValid)
+                validpasswordCount++;
             }
+            return validpasswordCount;
+        }
 
-            return validPasswords;
+        public bool IsValidPolicyPartTwo(string line)
+        {
+            char[] delimiterChars = { ':', ' ', '-' };
+           
+            var characters = line.Split(delimiterChars);
+
+            var min = int.Parse(characters.First());
+            var max = int.Parse(characters.Skip(1).First());
+            var requiredLetter = characters.Skip(2).First();
+            var lettersequence = characters.Skip(4).First().ToArray();
+
+            var matchesMin = lettersequence[min - 1] == requiredLetter[0];
+            var matchesMax = lettersequence[max - 1] == requiredLetter[0]; 
+            return matchesMin ^ matchesMax;
         }
 
         private string[] GetInput()
