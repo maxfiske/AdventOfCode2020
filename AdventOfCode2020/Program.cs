@@ -2,7 +2,7 @@
 using AdventOfCode2020.Day02;
 using AdventOfCode2020.Day03;
 using AdventOfCode2020.Day04;
-using AdventOfCode2020.Day08;
+using AdventOfCode2020.Day05;
 using System;
 
 namespace AdventOfCode2020
@@ -41,6 +41,10 @@ namespace AdventOfCode2020
                 case 4:
                     var solution4 = new SolutionDay4();
                     solution4.Initialize();
+                    break;
+                case 5:
+                    var solution5 = new SolutionDay5();
+                    solution5.Initialize();
                     break;
             }
         }

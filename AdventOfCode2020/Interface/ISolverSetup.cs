@@ -3,5 +3,6 @@
     interface ISolverSetup
     {
         void Initialize();
+        string[] GetInput();
     }
 }

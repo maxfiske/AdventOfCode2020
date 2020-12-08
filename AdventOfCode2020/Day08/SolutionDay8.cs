@@ -14,7 +14,7 @@ namespace AdventOfCode2020.Day08
             var input = GetInput();
         }
 
-        private string[] GetInput()
+        public string[] GetInput()
         {
             return File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day08/input.txt"));
         }

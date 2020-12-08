@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+
 namespace AdventOfCode2020.Day01
 {
     class SolutionDay1 : ISolverSetup
@@ -14,7 +15,7 @@ namespace AdventOfCode2020.Day01
 
         public void Initialize()
         {
-            var numbers = GetInput();
+            var numbers = GetInput().Select(int.Parse).ToList();
 
             var partOneResult = PartOne(numbers);
             Console.WriteLine($"Part One - Found match: {partOneResult}");
@@ -39,10 +40,9 @@ namespace AdventOfCode2020.Day01
                     where numbers.Contains(z)
                     select x * y * z).First();
         }
-        private List<int> GetInput()
+        public string[] GetInput()
         {
-            var input = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day01/input.txt"));
-            return input.Select(int.Parse).ToList();
+            return File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day01/input.txt"));
         }
     }
 }

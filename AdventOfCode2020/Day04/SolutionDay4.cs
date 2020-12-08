@@ -126,7 +126,7 @@ namespace AdventOfCode2020.Day04
              };
             return fields;
         }
-        private string[] GetInput()
+        public string[] GetInput()
         {
             return File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day04/input.txt"));
         }

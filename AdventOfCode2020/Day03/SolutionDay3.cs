@@ -83,7 +83,7 @@ namespace AdventOfCode2020.Day03
             }
             return char.Parse(".");
         }
-        private string[] GetInput()
+        public string[] GetInput()
         {
             return File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day03/input.txt"));
         }

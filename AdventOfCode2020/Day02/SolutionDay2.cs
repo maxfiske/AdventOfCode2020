@@ -93,7 +93,7 @@ namespace AdventOfCode2020.Day02
             lettersequence = characters.Skip(4).First().ToArray();
         }
 
-        private string[] GetInput()
+        public string[] GetInput()
         {
             var input = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day02/input.txt"));
             return input;
