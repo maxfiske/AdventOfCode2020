@@ -2,6 +2,7 @@
 using AdventOfCode2020.Day02;
 using AdventOfCode2020.Day03;
 using AdventOfCode2020.Day04;
+using AdventOfCode2020.Day08;
 using System;
 
 namespace AdventOfCode2020
@@ -49,7 +50,11 @@ namespace AdventOfCode2020
             Day01,
             Day02,
             Day03,
-            Day04
+            Day04,
+            Day05,
+            Day06,
+            Day07,
+            Day08,
         }
     }
 }
