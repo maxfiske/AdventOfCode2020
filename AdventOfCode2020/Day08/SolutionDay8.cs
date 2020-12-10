@@ -12,6 +12,13 @@ namespace AdventOfCode2020.Day08
         public void Initialize()
         {
             var input = GetInput();
+            var test = PartOne(input);
+
+        }
+
+        private object PartOne(string[] input)
+        {
+            throw new NotImplementedException();
         }
 
         public string[] GetInput()
