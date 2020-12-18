@@ -43,9 +43,9 @@ namespace AdventOfCode2020.Day06
             {
                 IEnumerable<char> groupAnswered = null;
 
-                foreach (string personAnswers in group)
+                foreach (string asnwer in group)
                 {
-                    groupAnswered = groupAnswered == null ? personAnswers.ToCharArray() : personAnswers.Intersect(groupAnswered);
+                    groupAnswered = groupAnswered == null ? asnwer.ToCharArray() : asnwer.Intersect(groupAnswered);
                   
                 }
                 groupCountAllWhoAnsweredYes.Add(groupAnswered.Count());
