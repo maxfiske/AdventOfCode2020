@@ -21,7 +21,7 @@ namespace AdventOfCode2020.Day04
             Console.WriteLine($"Day 4- Part One. Valid passwords count: {validPasswordCountPartOne}");
 
             var validPasswordCountPartTwo = PartTwo(input);
-            Console.WriteLine($"Day 4- Part One. Valid passwords count: {validPasswordCountPartTwo}");
+            Console.WriteLine($"Day 4- Part Two. Valid passwords count: {validPasswordCountPartTwo}");
         }
 
         private int PartOne(string[] input)
